@@ -14,30 +14,44 @@ const Home = () => {
 
 
 		return (
-		<div className="d-flex justify-content-center align-items-center flex-column">
-			<h1>TODOS</h1>
-			<input 
-				type="text"
-				placeholder="What needs to be done?"
-				className="form-control w-25 mx-auto"
-				onChange={(e) => setTask (e.target.value)}
-				onKeyUp={(e) => {
-					if (e.key === "Enter") {
-						setTaskList([...taskList, task]);
-						setTask("");
+		<div id="tares" className="d-flex justify-content-center align-items-center flex-column">
+			<h1 id="titulo">TODOS</h1>
+			<div className="card rounded-0 d-flex justify-content-center align-items-center flex-column mt-5">
+				<div className="card-body p-0">
+					<input 
+						type="text"
+						placeholder="What needs to be done?"
+						className="form-control border-0 focus-ring focus-ring-light border-bottom rounded-0 ps-4 p-2"
+						onChange={(e) => setTask (e.target.value)}
+						onKeyUp={(e) => {
+							if (e.key === "Enter") {
+								setTaskList([...taskList, task]);
+								setTask("");
+								e.target.value = "";
+							}
+						}}
+					/>
+					{/* <button onClick={() => setTaskList([...taskList, task])} className="btn btn-primary my-2">
+						Add Task
+					</button> */}
+					{taskList.length === 0 && <p className="mt-3 text-center">No tasks, add tasks</p>}
+					{taskList.map((task, index) => 
+						<p key={index}
+							className="d-flex border-bottom justify-content-between align-items-center m-0 ps-4 p-2">
+							{task}
+							<button 
+								onClick={()=> setTaskList(taskList.filter((item,ind)=> ind !== index)) }
+								className="btn-close">
+							</button> 
+						</p>)
 					}
-				}}
-			/>
-			{/* <button onClick={() => setTaskList([...taskList, task])} className="btn btn-primary my-2">
-				Add Task
-			</button> */}
-			{taskList.length === 0 && <p className="mt-3">No hay tareas, añadir tareas</p>}
-			<ul>
-				{taskList.map((task, index) => <li key={index}>{task}
-					<button onClick={()=> setTaskList(taskList.filter((item,ind)=> ind !== index)) }
-						className="btn-close"></button> 
-					</li>)}
-			</ul>
+					<h6
+						className="fw-lighter text-muted m-2"
+					>
+							{taskList.length} {taskList.length === 1 ? "item" : "items"} left
+					</h6>
+				</div>
+			</div>
 		</div>
 	);
 };
