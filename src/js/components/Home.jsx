@@ -15,7 +15,7 @@ const Home = () => {
 
 		return (
 		<div id="tares" className="d-flex justify-content-center align-items-center flex-column">
-			<h1 id="titulo">TODOS</h1>
+			<h1 id="titulo">ToDoList</h1>
 			<div className="card rounded-0 d-flex justify-content-center align-items-center flex-column mt-5">
 				<div className="card-body p-0">
 					<input 
